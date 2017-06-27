@@ -62,6 +62,7 @@ namespace uri
 //----------------------------------------------------------------------
 // Const values
 //----------------------------------------------------------------------
+static const size_t cDESERIALIZATION_SIZE_LIMIT = 50000;
 
 //----------------------------------------------------------------------
 // Implementation
@@ -167,6 +168,10 @@ serialization::tOutputStream& operator << (serialization::tOutputStream& stream,
 serialization::tInputStream& operator >> (serialization::tInputStream& stream, tPath& path)
 {
   size_t size = stream.ReadInt();
+  if (size > cDESERIALIZATION_SIZE_LIMIT)
+  {
+    throw std::runtime_error("Size limit for path deserialization exceeded");
+  }
   char buffer[size];
   stream.ReadFully(buffer, size);
   path.Set(tStringRange(buffer, size), 0);
