@@ -177,6 +177,22 @@ public:
   }
 
   /*!
+   * \return Absolute version of this path
+   */
+  inline tPath MakeAbsolute() const
+  {
+    return tPath(true, Begin(), End());
+  }
+
+  /*!
+   * \return Relative version of this path
+   */
+  inline tPath MakeRelative() const
+  {
+    return tPath(false, Begin(), End());
+  }
+
+  /*!
    * Sets path elements from string
    *
    * \param path_string String (e.g. /element1/element2)
