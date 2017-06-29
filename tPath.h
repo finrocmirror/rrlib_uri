@@ -102,6 +102,8 @@ public:
   {
     Set(path_string, separator);
   }
+  tPath(const std::string& path_string, char separator = '/') : tPath(tStringRange(path_string)) {}
+  tPath(const char* path_string, char separator = '/') : tPath(tStringRange(path_string)) {}
 
   /*!
    * Constructs path from iterator over string elements - e.g.
