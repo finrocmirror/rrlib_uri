@@ -98,11 +98,11 @@ tPath tPath::Append(const tPath& append) const
   tStringRange buffer[Size() + append.Size()];
   for (size_t i = 0; i < Size(); i++)
   {
-    buffer[i] == (*this)[i];
+    buffer[i] = (*this)[i];
   }
   for (size_t i = 0; i < append.Size(); i++)
   {
-    buffer[Size() + i] == append[i];
+    buffer[Size() + i] = append[i];
   }
   size_t size = Normalize(buffer, Size() + append.Size());
   return tPath(IsAbsolute(), &buffer[0], &buffer[size]);
